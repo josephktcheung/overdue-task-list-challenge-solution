@@ -13,6 +13,9 @@
 		7CBA49311991010800EEC095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBA492F1991010800EEC095 /* Main.storyboard */; };
 		7CBA49331991010800EEC095 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CBA49321991010800EEC095 /* Images.xcassets */; };
 		7CBA493F1991010800EEC095 /* Overdue_Task_List_Assignment_SolutionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA493E1991010800EEC095 /* Overdue_Task_List_Assignment_SolutionTests.m */; };
+		7CBA494A1991023200EEC095 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA49491991023200EEC095 /* AddTaskViewController.m */; };
+		7CBA494D1991023E00EEC095 /* DetailTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA494C1991023E00EEC095 /* DetailTaskViewController.m */; };
+		7CBA49501991024400EEC095 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA494F1991024400EEC095 /* EditTaskViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,12 @@
 		7CBA49381991010800EEC095 /* Overdue Task List Assignment SolutionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overdue Task List Assignment SolutionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBA493D1991010800EEC095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CBA493E1991010800EEC095 /* Overdue_Task_List_Assignment_SolutionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Overdue_Task_List_Assignment_SolutionTests.m; sourceTree = "<group>"; };
+		7CBA49481991023200EEC095 /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
+		7CBA49491991023200EEC095 /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
+		7CBA494B1991023E00EEC095 /* DetailTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTaskViewController.h; sourceTree = "<group>"; };
+		7CBA494C1991023E00EEC095 /* DetailTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTaskViewController.m; sourceTree = "<group>"; };
+		7CBA494E1991024400EEC095 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
+		7CBA494F1991024400EEC095 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +93,12 @@
 				7CBA492C1991010800EEC095 /* ViewController.h */,
 				7CBA492D1991010800EEC095 /* ViewController.m */,
 				7CBA492F1991010800EEC095 /* Main.storyboard */,
+				7CBA49481991023200EEC095 /* AddTaskViewController.h */,
+				7CBA49491991023200EEC095 /* AddTaskViewController.m */,
+				7CBA494B1991023E00EEC095 /* DetailTaskViewController.h */,
+				7CBA494C1991023E00EEC095 /* DetailTaskViewController.m */,
+				7CBA494E1991024400EEC095 /* EditTaskViewController.h */,
+				7CBA494F1991024400EEC095 /* EditTaskViewController.m */,
 				7CBA49321991010800EEC095 /* Images.xcassets */,
 				7CBA49251991010800EEC095 /* Supporting Files */,
 			);
@@ -216,8 +231,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CBA492E1991010800EEC095 /* ViewController.m in Sources */,
+				7CBA494A1991023200EEC095 /* AddTaskViewController.m in Sources */,
 				7CBA492B1991010800EEC095 /* AppDelegate.m in Sources */,
+				7CBA49501991024400EEC095 /* EditTaskViewController.m in Sources */,
 				7CBA49281991010800EEC095 /* main.m in Sources */,
+				7CBA494D1991023E00EEC095 /* DetailTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

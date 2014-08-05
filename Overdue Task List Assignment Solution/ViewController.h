@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)addTaskBarButtonItemPressed:(UIBarButtonItem *)sender;
+- (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender;
 
 @end
 
