@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "DetailTaskViewController.h"
 
 @interface ViewController ()
 
@@ -53,9 +52,14 @@
         AddTaskViewController *targetViewController = segue.destinationViewController;
         targetViewController.delegate = self;
     }
-    else if ([segue.destinationViewController isKindOfClass:[DetailTaskViewController class]]) {
-        DetailTaskViewController *targetViewController = segue.destinationViewController;
-        targetViewController.task = sender;
+    else if ([sender isKindOfClass:[NSIndexPath class]]) {
+        if ([segue.destinationViewController isKindOfClass:[DetailTaskViewController class]]) {
+            DetailTaskViewController *targetViewController = segue.destinationViewController;
+            NSIndexPath *indexPath = sender;
+            OTTask *task = [self.taskObjects objectAtIndex:indexPath.row];
+            targetViewController.task = task;
+            targetViewController.delegate = self;
+        }
     }
 }
 
@@ -137,6 +141,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - DetailTaskViewController Delegate
+- (void)didUpdateTask
+{
+    NSLog(@"did Update task from view controller");
+    
+    [self saveTasks];
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableView Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -200,8 +213,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    OTTask *taskObject = [self.taskObjects objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:taskObject];
+    [self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:indexPath];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
