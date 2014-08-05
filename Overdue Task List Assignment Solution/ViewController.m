@@ -34,6 +34,9 @@
         OTTask *taskObject = [self taskObjectForDictionary:dictionary];
         [self.taskObjects addObject:taskObject];
     }
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,7 +94,33 @@
     [[NSUserDefaults standardUserDefaults] setObject:taskObjectsAsPropertyLists forKey:TASK_OBJECTS_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [self.tableView reloadData];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UITableView Data Source
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.taskObjects count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    OTTask *task = [self.taskObjects objectAtIndex:indexPath.row];
+    cell.textLabel.text = task.taskTitle;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    cell.detailTextLabel.text = [formatter stringFromDate:task.taskDate];
+    
+    return cell;
 }
 
 @end
