@@ -132,4 +132,13 @@
     return cell;
 }
 
+#pragma mark - UITableView Delegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OTTask *task = self.taskObjects[indexPath.row];
+    task.taskCompletion = !task.taskCompletion;
+    NSLog(task.taskCompletion ? @"Completed task" : @"Not complete yet");
+}
+
 @end
