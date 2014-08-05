@@ -7,7 +7,6 @@
 //
 
 #import "DetailTaskViewController.h"
-#import "EditTaskViewController.h"
 
 @interface DetailTaskViewController ()
 
@@ -20,9 +19,7 @@
     // Do any additional setup after loading the view.
     self.taskNameLabel.text = self.task.taskTitle;
     self.taskDetailLabel.text = self.task.taskDescription;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    self.dateLabel.text = [formatter stringFromDate:self.task.taskDate];
+    [self updateDateLabel:self.task.taskDate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,10 +36,30 @@
     if ([segue.destinationViewController isKindOfClass:[EditTaskViewController class]]) {
         EditTaskViewController *targetViewController = segue.destinationViewController;
         targetViewController.task = self.task;
+        targetViewController.delegate = self;
     }
 }
 
 - (IBAction)editBarButtonItemPressed:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"toEditTaskViewControllerSegue" sender:sender];
 }
+
+#pragma mark - helper methods
+- (void)updateDateLabel:(NSDate *)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    self.dateLabel.text = [formatter stringFromDate:date];
+}
+
+#pragma mark - EditTaskViewController Delegate
+- (void)didEditTask
+{
+    self.taskNameLabel.text = self.task.taskTitle;
+    self.taskDetailLabel.text = self.task.taskDescription;
+    [self updateDateLabel:self.task.taskDate];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate didUpdateTask];
+}
+
 @end

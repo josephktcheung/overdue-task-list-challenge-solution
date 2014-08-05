@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "DetailTaskViewController.h"
 
 @interface ViewController ()
 
@@ -59,6 +58,7 @@
             NSIndexPath *indexPath = sender;
             OTTask *task = [self.taskObjects objectAtIndex:indexPath.row];
             targetViewController.task = task;
+            targetViewController.delegate = self;
         }
     }
 }
@@ -141,6 +141,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - DetailTaskViewController Delegate
+- (void)didUpdateTask
+{
+    NSLog(@"did Update task from view controller");
+    
+    [self saveTasks];
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableView Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -204,7 +213,6 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    OTTask *taskObject = [self.taskObjects objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:indexPath];
 }
 
