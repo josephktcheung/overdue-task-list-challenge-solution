@@ -76,6 +76,11 @@
     return taskObject;
 }
 
+- (BOOL)isDateGreaterThanDate:(NSDate *)date and:(NSDate *)toDate
+{
+    return [date timeIntervalSince1970] > [toDate timeIntervalSince1970];
+}
+
 #pragma mark - AddTaskViewController Delegate
 
 - (void)didCancel
@@ -115,10 +120,14 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     OTTask *task = [self.taskObjects objectAtIndex:indexPath.row];
+    
     cell.textLabel.text = task.taskTitle;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     cell.detailTextLabel.text = [formatter stringFromDate:task.taskDate];
+    
+    if ([self isDateGreaterThanDate:[NSDate date] and:task.taskDate]) cell.backgroundColor = [UIColor redColor];
+    else cell.backgroundColor = [UIColor yellowColor];
     
     return cell;
 }
