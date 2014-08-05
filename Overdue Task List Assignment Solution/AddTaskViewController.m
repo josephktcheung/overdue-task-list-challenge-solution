@@ -33,6 +33,8 @@
     task.taskDescription = self.taskDetailTextView.text;
     task.taskDate = self.datePicker.date;
     task.taskCompletion = NO;
+    
+    return task;
 }
 
 
