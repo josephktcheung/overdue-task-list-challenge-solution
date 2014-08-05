@@ -15,4 +15,6 @@
 @property (strong, nonatomic) NSDate *taskDate;
 @property (nonatomic) BOOL taskCompletion;
 
+- (id)initWithData:(NSDictionary *)data;
+
 @end

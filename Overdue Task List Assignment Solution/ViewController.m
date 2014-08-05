@@ -28,6 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    NSArray *taskObjectsAsPropertyLists = [[NSUserDefaults standardUserDefaults] objectForKey:TASK_OBJECTS_KEY];
+    for (NSDictionary *dictionary in taskObjectsAsPropertyLists) {
+        OTTask *taskObject = [self taskObjectForDictionary:dictionary];
+        [self.taskObjects addObject:taskObject];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +67,11 @@
     return taskObjectAsPropertyList;
 }
 
+- (OTTask *)taskObjectForDictionary:(NSDictionary *)dictionary
+{
+    OTTask *taskObject = [[OTTask alloc] initWithData:dictionary];
+    return taskObject;
+}
 
 #pragma mark - AddTaskViewController Delegate
 
