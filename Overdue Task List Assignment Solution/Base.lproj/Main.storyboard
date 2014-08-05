@@ -18,6 +18,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ymh-F4-Uzu"/>
+                    <connections>
+                        <segue destination="02U-ib-vtO" kind="presentation" identifier="toAddTaskViewControllerSegue" id="raM-mR-v0f"/>
+                        <segue destination="Fs9-xP-XaO" kind="show" identifier="toDetailTaskViewControllerSegue" id="9tx-mZ-J6C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joh-16-6mB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="-78"/>
+            <point key="canvasLocation" x="984" y="186"/>
         </scene>
         <!--Detail Task View Controller-->
         <scene sceneID="NTK-mv-VqN">
@@ -54,10 +58,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="qUG-r5-Pp8" kind="show" identifier="toEditTaskViewControllerSegue" id="BKX-eL-Hlm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l87-4K-yK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="478"/>
+            <point key="canvasLocation" x="984" y="790"/>
         </scene>
         <!--Edit Task View Controller-->
         <scene sceneID="cDC-QX-Qq1">
@@ -75,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oTX-0Q-vo5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="1028"/>
+            <point key="canvasLocation" x="1582" y="790"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pFL-Yn-xbr">
