@@ -156,4 +156,27 @@
     [self.tableView reloadData];
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.taskObjects removeObjectAtIndex:indexPath.row];
+        
+        NSMutableArray *newSavedTaskObjectData = [[NSMutableArray alloc] init];
+        
+        for (OTTask *taskObject in self.taskObjects) {
+            [newSavedTaskObjectData addObject:[self taskObjectAsPropertyList:taskObject]];
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:newSavedTaskObjectData forKey:TASK_OBJECTS_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 @end
