@@ -64,6 +64,7 @@
 }
 
 #pragma mark - helper methods
+
 -(NSDictionary *)taskObjectAsPropertyList:(OTTask *)taskObject
 {
     NSDictionary *taskObjectAsPropertyList = @{TASK_TITLE : taskObject.taskTitle, TASK_DESCRIPTION : taskObject.taskDescription, TASK_DATE : taskObject.taskDate, TASK_COMPLETION : @(taskObject.taskCompletion)};
@@ -74,6 +75,24 @@
 {
     OTTask *taskObject = [[OTTask alloc] initWithData:dictionary];
     return taskObject;
+}
+
+- (BOOL)isDateGreaterThanDate:(NSDate *)date and:(NSDate *)toDate
+{
+    return [date timeIntervalSince1970] > [toDate timeIntervalSince1970];
+}
+
+- (void)updateCompletionOfTask:(OTTask *)task forIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray *taskObjectsAsPropertyLists = [[[NSUserDefaults standardUserDefaults] objectForKey:TASK_OBJECTS_KEY] mutableCopy];
+    [taskObjectsAsPropertyLists removeObjectAtIndex:indexPath.row];
+    
+    task.taskCompletion = !task.taskCompletion;
+    NSDictionary *taskObjectAsPropertyList = @{TASK_TITLE : task.taskTitle, TASK_DESCRIPTION : task.taskDescription, TASK_DATE : task.taskDate, TASK_COMPLETION : @(task.taskCompletion)};
+    [taskObjectsAsPropertyLists insertObject:taskObjectAsPropertyList atIndex:indexPath.row];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:taskObjectsAsPropertyLists forKey:TASK_OBJECTS_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - AddTaskViewController Delegate
@@ -115,12 +134,26 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     OTTask *task = [self.taskObjects objectAtIndex:indexPath.row];
+    
     cell.textLabel.text = task.taskTitle;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     cell.detailTextLabel.text = [formatter stringFromDate:task.taskDate];
     
+    if (task.taskCompletion) cell.backgroundColor = [UIColor greenColor];
+    else if ([self isDateGreaterThanDate:[NSDate date] and:task.taskDate]) cell.backgroundColor = [UIColor redColor];
+    else cell.backgroundColor = [UIColor yellowColor];
+    
     return cell;
+}
+
+#pragma mark - UITableView Delegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OTTask *task = self.taskObjects[indexPath.row];
+    [self updateCompletionOfTask:task forIndexPath:indexPath];
+    [self.tableView reloadData];
 }
 
 @end
