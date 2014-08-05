@@ -64,6 +64,7 @@
 }
 
 #pragma mark - helper methods
+
 -(NSDictionary *)taskObjectAsPropertyList:(OTTask *)taskObject
 {
     NSDictionary *taskObjectAsPropertyList = @{TASK_TITLE : taskObject.taskTitle, TASK_DESCRIPTION : taskObject.taskDescription, TASK_DATE : taskObject.taskDate, TASK_COMPLETION : @(taskObject.taskCompletion)};
@@ -79,6 +80,19 @@
 - (BOOL)isDateGreaterThanDate:(NSDate *)date and:(NSDate *)toDate
 {
     return [date timeIntervalSince1970] > [toDate timeIntervalSince1970];
+}
+
+- (void)updateCompletionOfTask:(OTTask *)task forIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray *taskObjectsAsPropertyLists = [[[NSUserDefaults standardUserDefaults] objectForKey:TASK_OBJECTS_KEY] mutableCopy];
+    [taskObjectsAsPropertyLists removeObjectAtIndex:indexPath.row];
+    
+    task.taskCompletion = !task.taskCompletion;
+    NSDictionary *taskObjectAsPropertyList = @{TASK_TITLE : task.taskTitle, TASK_DESCRIPTION : task.taskDescription, TASK_DATE : task.taskDate, TASK_COMPLETION : @(task.taskCompletion)};
+    [taskObjectsAsPropertyLists insertObject:taskObjectAsPropertyList atIndex:indexPath.row];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:taskObjectsAsPropertyLists forKey:TASK_OBJECTS_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - AddTaskViewController Delegate
@@ -126,7 +140,8 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     cell.detailTextLabel.text = [formatter stringFromDate:task.taskDate];
     
-    if ([self isDateGreaterThanDate:[NSDate date] and:task.taskDate]) cell.backgroundColor = [UIColor redColor];
+    if (task.taskCompletion) cell.backgroundColor = [UIColor greenColor];
+    else if ([self isDateGreaterThanDate:[NSDate date] and:task.taskDate]) cell.backgroundColor = [UIColor redColor];
     else cell.backgroundColor = [UIColor yellowColor];
     
     return cell;
@@ -137,8 +152,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OTTask *task = self.taskObjects[indexPath.row];
-    task.taskCompletion = !task.taskCompletion;
-    NSLog(task.taskCompletion ? @"Completed task" : @"Not complete yet");
+    [self updateCompletionOfTask:task forIndexPath:indexPath];
+    [self.tableView reloadData];
 }
 
 @end
