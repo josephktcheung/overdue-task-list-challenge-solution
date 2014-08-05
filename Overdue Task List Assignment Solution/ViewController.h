@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) NSMutableArray *taskObjects;
+
 - (IBAction)addTaskBarButtonItemPressed:(UIBarButtonItem *)sender;
 - (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender;
 

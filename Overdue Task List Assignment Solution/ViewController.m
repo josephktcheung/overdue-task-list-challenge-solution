@@ -13,7 +13,16 @@
 @end
 
 @implementation ViewController
-            
+
+#pragma mark - Lazy Instantiation
+- (NSMutableArray *)taskObjects
+{
+    if (!_taskObjects) {
+        _taskObjects = [[NSMutableArray alloc] init];
+    }
+    return _taskObjects;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
