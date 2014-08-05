@@ -24,9 +24,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - helper methods
 
+- (OTTask *)returnTask
+{
+    OTTask *task = [[OTTask alloc] init];
+    task.taskTitle = self.taskNameTextField.text;
+    task.taskDescription = self.taskDetailTextView.text;
+    task.taskDate = self.datePicker.date;
+    task.taskCompletion = NO;
+}
+
+
+#pragma mark - Navigation
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -34,9 +45,14 @@
 }
 */
 
-- (IBAction)cancelButtonPressed:(UIButton *)sender {
+- (IBAction)cancelButtonPressed:(UIButton *)sender
+{
+    [self.delegate didCancel];
 }
 
-- (IBAction)addTaskButtonPressed:(UIButton *)sender {
+- (IBAction)addTaskButtonPressed:(UIButton *)sender
+{
+    [self.delegate didAddTask:[self returnTask]];
 }
+
 @end

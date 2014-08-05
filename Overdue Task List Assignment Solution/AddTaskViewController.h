@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OTTask.h"
+@protocol AddTaskViewControllerDelegate <NSObject>
+
+- (void)didCancel;
+- (void)didAddTask:(OTTask *)task;
+
+@end
+
 
 @interface AddTaskViewController : UIViewController
+
+@property (weak, nonatomic) id <AddTaskViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) IBOutlet UITextField *taskNameTextField;
 @property (strong, nonatomic) IBOutlet UITextView *taskDetailTextView;
