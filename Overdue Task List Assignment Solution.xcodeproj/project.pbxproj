@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CB993D519912659007A8B62 /* OTTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB993D419912659007A8B62 /* OTTask.m */; };
 		7CBA49281991010800EEC095 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA49271991010800EEC095 /* main.m */; };
 		7CBA492B1991010800EEC095 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA492A1991010800EEC095 /* AppDelegate.m */; };
 		7CBA492E1991010800EEC095 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA492D1991010800EEC095 /* ViewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7CB993D319912659007A8B62 /* OTTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTTask.h; sourceTree = "<group>"; };
+		7CB993D419912659007A8B62 /* OTTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTTask.m; sourceTree = "<group>"; };
 		7CBA49221991010800EEC095 /* Overdue Task List Assignment Solution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Overdue Task List Assignment Solution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBA49261991010800EEC095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CBA49271991010800EEC095 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7CB993D219912636007A8B62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7CB993D319912659007A8B62 /* OTTask.h */,
+				7CB993D419912659007A8B62 /* OTTask.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		7CBA49191991010800EEC095 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +112,7 @@
 				7CBA494C1991023E00EEC095 /* DetailTaskViewController.m */,
 				7CBA494E1991024400EEC095 /* EditTaskViewController.h */,
 				7CBA494F1991024400EEC095 /* EditTaskViewController.m */,
+				7CB993D219912636007A8B62 /* Model */,
 				7CBA49321991010800EEC095 /* Images.xcassets */,
 				7CBA49251991010800EEC095 /* Supporting Files */,
 			);
@@ -236,6 +249,7 @@
 				7CBA494A1991023200EEC095 /* AddTaskViewController.m in Sources */,
 				7CBA492B1991010800EEC095 /* AppDelegate.m in Sources */,
 				7CBA49501991024400EEC095 /* EditTaskViewController.m in Sources */,
+				7CB993D519912659007A8B62 /* OTTask.m in Sources */,
 				7CBA49281991010800EEC095 /* main.m in Sources */,
 				7CBA494D1991023E00EEC095 /* DetailTaskViewController.m in Sources */,
 			);
