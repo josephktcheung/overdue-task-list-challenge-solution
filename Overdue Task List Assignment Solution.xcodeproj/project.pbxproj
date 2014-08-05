@@ -47,6 +47,7 @@
 		7CBA494C1991023E00EEC095 /* DetailTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTaskViewController.m; sourceTree = "<group>"; };
 		7CBA494E1991024400EEC095 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
 		7CBA494F1991024400EEC095 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
+		7CBA495119910CB800EEC095 /* Overdue-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Overdue-Prefix.pch"; path = "../Overdue-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +109,7 @@
 		7CBA49251991010800EEC095 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7CBA495119910CB800EEC095 /* Overdue-Prefix.pch */,
 				7CBA49261991010800EEC095 /* Info.plist */,
 				7CBA49271991010800EEC095 /* main.m */,
 			);
@@ -350,6 +352,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "Overdue-Prefix.pch";
 				INFOPLIST_FILE = "Overdue Task List Assignment Solution/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -361,6 +365,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "Overdue-Prefix.pch";
 				INFOPLIST_FILE = "Overdue Task List Assignment Solution/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -420,6 +426,7 @@
 				7CBA49441991010800EEC095 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7CBA49451991010800EEC095 /* Build configuration list for PBXNativeTarget "Overdue Task List Assignment SolutionTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +435,7 @@
 				7CBA49471991010800EEC095 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
