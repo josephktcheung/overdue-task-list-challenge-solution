@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OTTask.h"
 
 @interface EditTaskViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *taskNameTextField;
 @property (strong, nonatomic) IBOutlet UITextView *taskDetailTextView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+
+@property (strong, nonatomic) OTTask *task;
 
 - (IBAction)saveBarButtonItemPressed:(UIBarButtonItem *)sender;
 
