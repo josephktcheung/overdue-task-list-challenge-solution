@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DetailTaskViewController.h"
 
 @interface ViewController ()
 
@@ -51,6 +52,10 @@
     if ([segue.destinationViewController isKindOfClass:[AddTaskViewController class]]) {
         AddTaskViewController *targetViewController = segue.destinationViewController;
         targetViewController.delegate = self;
+    }
+    else if ([segue.destinationViewController isKindOfClass:[DetailTaskViewController class]]) {
+        DetailTaskViewController *targetViewController = segue.destinationViewController;
+        targetViewController.task = sender;
     }
 }
 
@@ -177,6 +182,12 @@
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    OTTask *taskObject = [self.taskObjects objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:taskObject];
 }
 
 @end
