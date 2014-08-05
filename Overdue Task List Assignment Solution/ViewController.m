@@ -65,7 +65,10 @@
     [self performSegueWithIdentifier:@"toAddTaskViewControllerSegue" sender:sender];
 }
 
-- (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender {
+- (IBAction)reorderBarButtonItemPressed:(UIBarButtonItem *)sender
+{
+    if (self.tableView.editing) [self.tableView setEditing:NO];
+    else [self.tableView setEditing:YES];
 }
 
 #pragma mark - helper methods
