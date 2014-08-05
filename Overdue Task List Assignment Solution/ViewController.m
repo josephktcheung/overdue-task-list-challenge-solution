@@ -103,6 +103,17 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)saveTasks
+{
+    NSMutableArray *reorderedTaskObjectData = [[NSMutableArray alloc] init];
+    for (OTTask *taskObject in self.taskObjects) {
+        [reorderedTaskObjectData addObject:[self taskObjectAsPropertyList:taskObject]];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:reorderedTaskObjectData forKey:TASK_OBJECTS_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - AddTaskViewController Delegate
 
 - (void)didCancel
@@ -191,6 +202,19 @@
 {
     OTTask *taskObject = [self.taskObjects objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:taskObject];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return tableView.editing;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    OTTask *taskObject = self.taskObjects[sourceIndexPath.row];
+    [self.taskObjects removeObjectAtIndex:sourceIndexPath.row];
+    [self.taskObjects insertObject:taskObject atIndex:destinationIndexPath.row];
+    [self saveTasks];
 }
 
 @end
